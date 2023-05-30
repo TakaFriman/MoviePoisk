@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:themoviedb/widgets/movie_list/movie_list_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,14 +23,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('TMDB'),
+        title: const Text('TMDB'),
       ),
       body: IndexedStack(
         index: _selectedTab,
         children: [
-          Text('Home'),
+          const Text('Главная'),
           MovieListWidget(),
-          Text('Series'),
+          const Text('Сериалы'),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -40,15 +38,15 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: 'Home',
+            label: 'Главная',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.movie_outlined),
-            label: 'Movies',
+            label: 'Фильмы',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.tv_outlined),
-            label: 'Series',
+            label: 'Сериалы',
           ),
         ],
         onTap: onSelectTab,
