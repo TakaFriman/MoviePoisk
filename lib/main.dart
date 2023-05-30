@@ -16,32 +16,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.mainDarkBlue,
+          backgroundColor: AppColors.mainColor,
         ),
+        scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: AppColors.mainDarkBlue,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
+          backgroundColor: AppColors.mainColor,
+          selectedItemColor: Color.fromRGBO(230, 218, 166, 1),
+          unselectedItemColor: Color.fromRGBO(230, 218, 166, 0.45),
         ),
       ),
       routes: {
-        '/auth': (context) => AuthWidget(),
-        '/home_page': (context) => HomePage(),
-        '/bar_page': (context) => BarPage(),
+        '/auth': (context) => const AuthWidget(),
+        '/home_page': (context) => const HomePage(),
+        '/bar_page': (context) => const BarPage(),
         '/home_page/movie_detailis_page': (context) {
           final arguments = ModalRoute.of(context)?.settings.arguments;
           if (arguments is int) {
-            return MovieDetailis(
-              movieId: arguments,
-            );
+            return MovieDetailis(movieId: arguments);
           } else {
-            return MovieDetailis(
-              movieId: 0,
-            );
+            return const MovieDetailis(movieId: 0);
           }
         }
       },
