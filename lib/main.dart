@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:themoviedb/Theme/app_colors.dart';
 import 'package:themoviedb/widgets/auth/auth_widget.dart';
+import 'package:themoviedb/widgets/auth/auth_widget_model.dart';
+
 import 'package:themoviedb/widgets/bar_page.dart';
 import 'package:themoviedb/widgets/home/home_page.dart';
 import 'package:themoviedb/widgets/movie_detailis/movie_detailis.dart';
@@ -29,7 +31,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/auth': (context) => const AuthWidget(),
+        '/auth': (context) => AuthProvider(
+              model: AuthModel(),
+              child: const AuthWidget(),
+            ),
         '/home_page': (context) => const HomePage(),
         '/bar_page': (context) => const BarPage(),
         '/home_page/movie_detailis_page': (context) {
