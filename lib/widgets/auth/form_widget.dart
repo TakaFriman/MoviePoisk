@@ -13,7 +13,7 @@ class FormWidget extends StatelessWidget {
     const textStyle = TextStyle(fontSize: 16, color: Color(0xFF212529));
 
     const textFieldDecorator = InputDecoration(
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.purple)),
         contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         isCollapsed: true);
 
@@ -21,14 +21,14 @@ class FormWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const _ErrorMessageWidget(),
-        const Text('UserName', style: textStyle),
+        const Text('Логин', style: textStyle),
         const SizedBox(height: 5),
         TextField(
           controller: model?.loginTextController,
           decoration: textFieldDecorator,
         ),
         const SizedBox(height: 20),
-        const Text('Password', style: textStyle),
+        const Text('Пароль', style: textStyle),
         const SizedBox(height: 5),
         TextField(
           controller: model?.passwordTextController,
@@ -43,7 +43,7 @@ class FormWidget extends StatelessWidget {
             TextButton(
               onPressed: () {},
               style: AppButtonStyle.linkButton,
-              child: const Text('Reset password'),
+              child: const Text('Восстановить пароль'),
             ),
           ],
         )
@@ -57,7 +57,7 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const color = Color(0xFF01B4E4);
+    const color = Colors.purple;
     final model = AuthProvider.watch(context)?.model;
     final child = model?.isAuthProgress == true
         ? const SizedBox(
@@ -66,7 +66,7 @@ class AuthButton extends StatelessWidget {
             child: CircularProgressIndicator(
               strokeWidth: 2,
             ))
-        : const Text('Login');
+        : const Text('Войти');
     final onPressed = model?.canStartAuth == true ? () => model?.auth(context) : null;
     return ElevatedButton(
       onPressed: onPressed,
@@ -74,7 +74,7 @@ class AuthButton extends StatelessWidget {
         backgroundColor: MaterialStateProperty.all(color),
         foregroundColor: MaterialStateProperty.all(Colors.white),
         textStyle: MaterialStateProperty.all(
-          const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+          const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
         ),
         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
       ),

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: AppColors.mainColor,
         ),
         scaffoldBackgroundColor: Colors.white,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.mainColor,
           selectedItemColor: Color.fromRGBO(230, 218, 166, 1),
