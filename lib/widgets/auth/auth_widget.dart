@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/Theme/app_button_style.dart';
 import 'package:themoviedb/widgets/auth/form_widget.dart';
 
 class AuthWidget extends StatefulWidget {
@@ -14,7 +13,7 @@ class _AuthWidgetState extends State<AuthWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login to your account'),
+        title: const Text('Авторизация'),
         centerTitle: true,
       ),
       body: ListView(children: const [
@@ -30,22 +29,15 @@ class _HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const textStyle = TextStyle(fontSize: 16, color: Colors.black);
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 25),
-            const FormWidget(),
-            const SizedBox(height: 25),
-            const Text('1 текст', style: textStyle),
-            const SizedBox(height: 5),
-            TextButton(onPressed: () {}, style: AppButtonStyle.linkButton, child: const Text('Register')),
-            const SizedBox(height: 25),
-            const Text('2 текст', style: textStyle),
-            const SizedBox(height: 5),
-            TextButton(onPressed: () {}, style: AppButtonStyle.linkButton, child: const Text('Verify email')),
+            SizedBox(height: 25),
+            FormWidget(),
+            SizedBox(height: 25),
           ],
         ),
       ),
