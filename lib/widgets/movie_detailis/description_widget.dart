@@ -7,7 +7,7 @@ class DescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       'An elite Navy SEAL uncovers an international conspiracy while seeking justice for the murder of his pregnant wife.',
       style: TextStyle(
         color: Colors.white,
