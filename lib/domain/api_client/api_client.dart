@@ -7,6 +7,8 @@ class ApiClient {
   static const _imageUrl = 'https://image.tmdb.org/t/p/w500';
   static const _apiKey = '89e36eeac677c83c40fc61ba082570a0';
 
+  static const _authToken =
+      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OWUzNmVlYWM2NzdjODNjNDBmYzYxYmEwODI1NzBhMCIsInN1YiI6IjY0NzhlNTA4MTc0OTczMDEzNTAwMzQ2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RYOLoC_gvToyhtYN3zHdPeOUhAK5Iri34ZU5_gy1aoE';
   Future<String> auth({
     required String username,
     required String password,
@@ -23,6 +25,7 @@ class ApiClient {
 
   Uri _makeUri(String path, [Map<String, dynamic>? parameters]) {
     final uri = Uri.parse('$_host$path');
+
     if (parameters != null) {
       return uri.replace(queryParameters: parameters);
     } else {
@@ -35,7 +38,9 @@ class ApiClient {
       '/authentication/token/new',
       <String, dynamic>{'api_key': _apiKey},
     );
+
     final request = await _client.getUrl(url);
+    request.headers.add("Authorization", "Bearer $_authToken");
     final response = await request.close();
     final json = (await response.jsonDecode()) as Map<String, dynamic>;
     final token = json['request_token'] as String;
@@ -57,7 +62,7 @@ class ApiClient {
       'request_token': requestToken,
     };
     final request = await _client.postUrl(url);
-
+    request.headers.add("Authorization", "Bearer $_authToken");
     request.headers.contentType = ContentType.json;
     request.write(jsonEncode(parameters));
     final response = await request.close();
@@ -78,7 +83,7 @@ class ApiClient {
       'request_token': requestToken,
     };
     final request = await _client.postUrl(url);
-
+    request.headers.add("Authorization", "Bearer $_authToken");
     request.headers.contentType = ContentType.json;
     request.write(jsonEncode(parameters));
     final response = await request.close();
