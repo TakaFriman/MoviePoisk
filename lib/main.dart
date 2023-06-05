@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:themoviedb/Theme/app_colors.dart';
-import 'package:themoviedb/widgets/auth/auth_widget.dart';
-import 'package:themoviedb/widgets/auth/auth_widget_model.dart';
+import 'package:themoviedb/my_app_model.dart';
+import 'package:themoviedb/navigation/main_navigation.dart';
 
-import 'package:themoviedb/widgets/bar_page.dart';
-import 'package:themoviedb/widgets/home/home_page.dart';
-import 'package:themoviedb/widgets/movie_detailis/movie_detailis.dart';
-
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final model = MyAppModel();
+  await model.checkAuth();
+  runApp(
+    MyApp(model: model),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final MyAppModel model;
+  static final mainNavigation = MainNavigation();
+  const MyApp({super.key, required this.model});
 
   // This widget is the root of your application.
   @override
@@ -30,23 +33,8 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Color.fromRGBO(230, 218, 166, 0.45),
         ),
       ),
-      routes: {
-        '/auth': (context) => AuthProvider(
-              model: AuthModel(),
-              child: const AuthWidget(),
-            ),
-        '/home_page': (context) => const HomePage(),
-        '/bar_page': (context) => const BarPage(),
-        '/home_page/movie_detailis_page': (context) {
-          final arguments = ModalRoute.of(context)?.settings.arguments;
-          if (arguments is int) {
-            return MovieDetailis(movieId: arguments);
-          } else {
-            return const MovieDetailis(movieId: 0);
-          }
-        }
-      },
-      initialRoute: '/auth',
+      routes: mainNavigation.routes,
+      initialRoute: mainNavigation.initialRoute(model.isAuth),
     );
   }
 }

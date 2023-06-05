@@ -1,7 +1,5 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:themoviedb/navigation/main_navigation.dart';
 import 'package:themoviedb/widgets/images.dart';
 
 class Movie {
@@ -12,15 +10,11 @@ class Movie {
   final String description;
 
   Movie(
-      {required this.id,
-      required this.imageName,
-      required this.title,
-      required this.time,
-      required this.description});
+      {required this.id, required this.imageName, required this.title, required this.time, required this.description});
 }
 
 class MovieListWidget extends StatefulWidget {
-  MovieListWidget({super.key});
+  const MovieListWidget({super.key});
 
   @override
   State<MovieListWidget> createState() => _MovieListWidgetState();
@@ -53,11 +47,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         time: 'April 7, 2021',
         description: 'Битва за жизнь !!!!'),
     Movie(
-        id: 5,
-        imageName: AppImages.girlImg,
-        title: 'Дюна',
-        time: 'April 7, 2021',
-        description: 'Битва за жизнь !!!!'),
+        id: 5, imageName: AppImages.girlImg, title: 'Дюна', time: 'April 7, 2021', description: 'Битва за жизнь !!!!'),
   ];
   var _filterMovies = <Movie>[];
   final _searchController = TextEditingController();
@@ -83,7 +73,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   void _onMovieTap(int index) {
     final id = _movies[index].id;
     Navigator.of(context).pushNamed(
-      '/home_page/movie_detailis_page',
+      MainNavigationRouteNames.movieDetails,
       arguments: id,
     );
   }
@@ -93,16 +83,15 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     return Stack(
       children: [
         ListView.builder(
-            padding: EdgeInsets.only(top: 70),
+            padding: const EdgeInsets.only(top: 70),
             itemCount: _filterMovies.length,
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemExtent: 163,
             itemBuilder: (BuildContext context, int index) {
               final movie = _filterMovies[index];
               return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 child: Stack(
                   children: [
                     Container(
@@ -112,14 +101,14 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                           border: Border.all(
                             color: Colors.black.withOpacity(0.2),
                           ),
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(10),
                           ),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.1),
                               blurRadius: 8,
-                              offset: Offset(0, 2),
+                              offset: const Offset(0, 2),
                             )
                           ]),
                       child: Row(
@@ -130,23 +119,23 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Text(
                                   movie.title,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Text(
                                   movie.time,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(color: Colors.grey),
+                                  style: const TextStyle(color: Colors.grey),
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Text(
                                   movie.description,
                                   maxLines: 2,
@@ -178,7 +167,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                 labelText: 'Поиск',
                 filled: true,
                 fillColor: Colors.white.withAlpha(235),
-                border: OutlineInputBorder()),
+                border: const OutlineInputBorder()),
           ),
         )
       ],
