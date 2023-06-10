@@ -35,9 +35,9 @@ class _HeaderWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 25),
+            SizedBox(height: 20),
             FormWidget(),
-            SizedBox(height: 25),
+            SizedBox(height: 20),
           ],
         ),
       ),
